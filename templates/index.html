@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGV Simulator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .stats-section {
+            margin-bottom: 16px;
+        }
+        .stats-section h4 {
+            margin: 0 0 8px;
+            font-size: 16px;
+            border-left: 4px solid #4A90E2;
+            padding-left: 8px;
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .stats-table th {
+            text-align: right;
+            color: #666;
+            padding: 6px 8px;
+            background: #f8f9fb;
+            border: 1px solid #e3e6ef;
+            width: 20%;
+        }
+        .stats-table td {
+            padding: 6px 8px;
+            border: 1px solid #e3e6ef;
+            background: #fff;
+            font-weight: 600;
+            width: 30%;
+        }
+        .stats-table tr:nth-child(even) td,
+        .stats-table tr:nth-child(even) th {
+            background: #fdfdfd;
+        }
+    </style>
+</head>
+<body>
+    <div id="leftDrawer" class="drawer drawer-left">
+        <div id="toolbar" class="drawer-content">
+            <div class="toolbar-section">
+                <h3>Map controls</h3>
+                <label>Select map:</label>
+                <select id="mapSelect">
+                    <option value="11">Floor 11 (z=0)</option>
+                    <option value="12">Floor 12 (z=1)</option>
+                    <option value="13">Floor 13 (z=2)</option>
+                </select>
+            </div>
+
+            <div class="toolbar-section">
+                <h3>Scene controls</h3>
+                <div class="button-row">
+                    <button type="button" id="createSceneBtn">New scene</button>
+                    <button type="button" id="loadSceneBtn">Load scene</button>
+                </div>
+                <div class="button-row">
+                    <button type="button" id="saveSceneBtn" class="btn-save">Save scene</button>
+                    <button type="button" id="exitSceneBtn" class="secondary">Exit scene</button>
+                </div>
+                <div class="button-row">
+                    <button type="button" id="statsBtn" class="secondary">Statistics</button>
+                </div>
+                <div id="currentSceneDisplay" class="scene-indicator">No active scene</div>
+            </div>
+
+            <div class="toolbar-section">
+                <h3>Simulation controls</h3>
+                <div class="button-row">
+                    <button id="startSimBtn">Start</button>
+                    <button id="pauseSimBtn" disabled>Pause</button>
+                    <button id="stopSimBtn" disabled>Stop</button>
+                </div>
+                <div class="sim-controls" style="margin-top: 10px;">
+                    <label>Speed: <span id="simSpeedVal">1.0</span>x</label>
+                    <input type="range" id="simSpeed" min="0.1" max="20" step="0.1" value="1">
+                </div>
+            </div>
+
+            <div class="toolbar-section">
+                <h3>Tools</h3>
+                <div class="button-row">
+                    <button id="measureBtn">Measure</button>
+                </div>
+            </div>
+
+            <div class="toolbar-section">
+                <h3>Path tools</h3>
+                <div class="button-row">
+                    <button id="pathBtn">Draw path</button>
+                    <button id="editBtn">Edit mode</button>
+                    <button id="clearBtn" class="danger">Clear</button>
+                </div>
+                <div class="inline-controls">
+                    <div id="directionControl" class="inline-control" style="display: none;">
+                        <label>Path direction</label>
+                        <select id="drawDirectionSelect">
+                            <option value="bidirectional">Bidirectional <-></option>
+                            <option value="unidirectional">Unidirectional -></option>
+                        </select>
+                    </div>
+                    <div id="editControl" class="inline-control" style="display: none;">
+                        <label>Edit operation</label>
+                        <select id="editOperationSelect">
+                            <option value="move">Move vertex</option>
+                            <option value="insert">Insert vertex</option>
+                            <option value="delete">Delete vertex</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toolbar-section">
+                <h3>AGV controls</h3>
+                <div class="button-row">
+                    <button id="createAgvBtn">Create an AGV</button>
+                    <button id="moveAgvBtn">Move AGV</button>
+                </div>
+            </div>
+
+            <div class="toolbar-section">
+                <h3>Settings</h3>
+                <label class="snap-toggle">
+                    <input type="checkbox" id="snapToVertex" checked>
+                    Snap radius (range: <span id="snapRadiusValue">20</span>px)
+                </label>
+                <input type="range" id="snapRadius" min="5" max="50" value="20">
+                <label class="snap-toggle" style="margin-top: 10px;">
+                    <input type="checkbox" id="showGridCheckbox">
+                    Show grid
+                </label>
+                <div style="margin-top: 5px;">
+                    <label>Grid size (m): <span id="gridSizeValue">1.0</span></label>
+                    <input type="range" id="gridSizeSlider" min="0.1" max="10" step="0.1" value="1.0">
+                </div>
+                <button id="actionConfigBtn" class="secondary" style="margin-top: 10px; width: 100%;">Action timing</button>
+                <button id="batteryConfigBtn" class="secondary" style="margin-top: 10px; width: 100%;">Battery settings</button>
+            </div>
+
+            <div style="font-size: 11px; color: #666; margin-top: 10px;">
+                <kbd>H</kbd> Help | <kbd>ESC</kbd> Cancel | <kbd>Del</kbd> delete
+            </div>
+        </div>
+        <div class="drawer-handle" aria-label="Open tools">Tools</div>
+    </div>
+
+    <div id="coordinateDisplay"></div>
+    <div id="hoverTooltip"></div>
+    <div id="simTimeDisplay" class="sim-time-display">00:00</div>
+
+    <div id="propertyPanel">
+        <h3 id="propertyTitle">Property editor</h3>
+        <div id="propertyContent"></div>
+    </div>
+
+    <div id="infoPanel">
+        <div id="infoContent">Ready</div>
+    </div>
+
+    <div id="rightDrawer" class="drawer drawer-right">
+        <div class="drawer-handle" aria-label="Open data">Data</div>
+        <div class="drawer-content">
+            <div class="drawer-tabs">
+                <button type="button" class="drawer-tab active" data-tab="agv">AGV list</button>
+                <button type="button" class="drawer-tab" data-tab="task">Task list</button>
+                <button type="button" class="drawer-tab" data-tab="log">Log</button>
+            </div>
+            <div class="drawer-body">
+                <div id="agvList" class="drawer-panel">No AGVs</div>
+                <div id="taskList" class="drawer-panel hidden">
+                    <div class="task-actions">
+                        <span id="taskCountSummary" class="task-count-summary">Tasks 0 / Completed 0</span>
+                        <div class="task-actions-btns">
+                            <button type="button" id="createTaskBtn" class="btn-small primary">New task</button>
+                            <button type="button" id="generateTaskBtn" class="btn-small secondary">Generate random</button>
+                        </div>
+                    </div>
+                    <div id="taskListContent" class="task-list-container">No tasks</div>
+                </div>
+                <div id="logList" class="drawer-panel hidden" style="height: 100%; display: flex; flex-direction: column;">
+                    <div id="logListContent" style="flex: 1; overflow-y: auto; padding: 5px; background: #f9f9f9;">No log entries</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="container">
+        <canvas id="mapCanvas"></canvas>
+    </div>
+
+    <!-- Save path dialog -->
+    <div id="savePathModal" class="modal">
+        <div class="modal-content">
+            <h3>Save path</h3>
+            <label>Path name:</label>
+            <input type="text" id="pathNameInput" placeholder="Enter a path name" />
+
+            <label>Default direction:</label>
+            <select id="pathDefaultDirection">
+                <option value="bidirectional">Bidirectional</option>
+                <option value="unidirectional">Unidirectional</option>
+            </select>
+
+            <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                This setting applies to edges without an explicit direction.
+            </div>
+
+            <div class="modal-buttons">
+                <button class="btn-save" onclick="confirmSavePath()">Save</button>
+                <button class="btn-cancel" onclick="closeSavePathModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create AGV dialog -->
+    <div id="createAgvModal" class="modal">
+        <div class="modal-content">
+            <h3>Create an AGV</h3>
+            <label>AGV name:</label>
+            <input type="text" id="agvNameInput" placeholder="Enter an AGV name" />
+
+            <label>Initial X:</label>
+            <input type="number" id="agvPosX" value="0" step="0.1" />
+
+            <label>Initial Y:</label>
+            <input type="number" id="agvPosY" value="0" step="0.1" />
+
+            <label>Body length (m):</label>
+            <input type="number" id="agvLength" value="0.7" step="0.05" min="0.2" />
+
+            <label>Body width (m):</label>
+            <input type="number" id="agvWidth" value="0.5" step="0.05" min="0.2" />
+
+            <label>Maximum speed (m/s):</label>
+            <input type="number" id="agvMaxSpeed" value="1.0" step="0.1" min="0.1" />
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Actual speed is the lower of vehicle and path limits.</div>
+
+            <label>Floor:</label>
+            <select id="agvFloor">
+                <option value="0">Floor 11 (z=0)</option>
+                <option value="1">Floor 12 (z=1)</option>
+                <option value="2">Floor 13 (z=2)</option>
+            </select>
+
+            <div class="modal-buttons">
+                <button class="btn-save" onclick="confirmCreateAgv()">Create</button>
+                <button class="btn-cancel" onclick="closeCreateAgvModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help dialog -->
+    <div id="helpPanel">
+        <h3>Keyboard shortcuts</h3>
+        <ul>
+            <li><kbd>H</kbd> - show or hide help</li>
+            <li><kbd>ESC</kbd> - cancel the current action</li>
+            <li><kbd>Del</kbd> / <kbd>Backspace</kbd> - delete the selected element</li>
+            <li><kbd>Left click</kbd> - add a path vertex</li>
+            <li><kbd>Right click</kbd> - finish drawing</li>
+            <li><kbd>Double click</kbd> - edit vertex or edge properties</li>
+            <li><kbd>Ctrl+S</kbd> - save the path</li>
+            <li><kbd>Ctrl+Z</kbd> - undo the last vertex</li>
+        </ul>
+        <button onclick="closeHelpPanel()" style="width: 100%; margin-top: 15px; padding: 8px; border: none; background: #007bff; color: white; border-radius: 4px; cursor: pointer;">Close</button>
+    </div>
+
+    <!-- Create task dialog -->
+    <div id="createTaskModal" class="modal">
+        <div class="modal-content">
+            <h3>Create task</h3>
+            <label>Task name</label>
+            <input type="text" id="taskNameInput" placeholder="Enter a task name" />
+
+            <label>Start vertex</label>
+            <div class="task-vertex-row">
+                <input type="text" id="taskStartVertex" readonly placeholder="Click to select" />
+                <button type="button" class="btn-small secondary" id="selectStartVertexBtn">Select</button>
+            </div>
+
+            <label>Destination vertices <span id="taskEndVerticesCount" style="font-size: 12px; color: #666;">(0 destinations)</span></label>
+            <div id="taskEndVerticesContainer">
+                <!-- Destinations appear after clicking Add destination. -->
+            </div>
+            <div style="margin-top: 4px;">
+                <button type="button" class="btn-small secondary" id="addEndVertexBtn" style="padding: 4px 8px;">+ Add destination</button>
+            </div>
+
+            <label>Priority</label>
+            <select id="taskPriorityInput">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+            </select>
+
+            <label>Start time (MM:SS)</label>
+            <input type="text" id="taskStartTimeInput" placeholder="Example: 05:30" pattern="[0-9]{1,3}:[0-5][0-9]" />
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Offset from simulation start.</div>
+
+            <label>Deadline (MM:SS)</label>
+            <input type="text" id="taskDeadlineInput" placeholder="Example: 10:45" pattern="[0-9]{1,3}:[0-5][0-9]" />
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Offset from simulation start.</div>
+
+            <div class="modal-buttons">
+                <button type="button" class="btn-save" id="confirmCreateTaskBtn">Create</button>
+                <button type="button" class="btn-cancel" onclick="closeTaskModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create scene dialog -->
+    <div id="createSceneModal" class="modal">
+        <div class="modal-content">
+            <h3>New scene</h3>
+            <label>Scene name</label>
+            <input type="text" id="sceneNameInput" placeholder="Enter a scene name" />
+            <div class="modal-buttons">
+                <button type="button" class="btn-save" id="confirmCreateSceneBtn">Create</button>
+                <button type="button" class="btn-cancel" onclick="closeSceneModal('createSceneModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load scene dialog -->
+    <div id="loadSceneModal" class="modal">
+        <div class="modal-content">
+            <h3>Load scene</h3>
+            <label>Select scene</label>
+            <select id="sceneSelect"></select>
+            <div class="modal-buttons">
+                <button type="button" class="btn-save" id="confirmLoadSceneBtn">Load</button>
+                <button type="button" class="btn-cancel" onclick="closeSceneModal('loadSceneModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Random task dialog -->
+    <div id="generateTaskModal" class="modal">
+        <div class="modal-content">
+            <h3>Generate random tasks</h3>
+            <label>Task count</label>
+            <input type="number" id="generateTaskCount" min="1" max="100" value="5" />
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Number of tasks (1-100).</div>
+
+            <label>Time range (minutes)</label>
+            <input type="number" id="generateTaskDuration" min="0.1" max="1440" step="0.1" value="10" />
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Start times are sampled within this range.</div>
+
+            <label>Priority distribution</label>
+            <div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
+                <div style="flex: 1;">
+                    <label style="font-size: 12px;">Low priority</label>
+                    <input type="number" id="generateTaskPriorityLow" min="0" max="100" value="33" style="width: 100%;" />
+                </div>
+                <div style="flex: 1;">
+                    <label style="font-size: 12px;">Medium priority</label>
+                    <input type="number" id="generateTaskPriorityMedium" min="0" max="100" value="34" style="width: 100%;" />
+                </div>
+                <div style="flex: 1;">
+                    <label style="font-size: 12px;">High priority</label>
+                    <input type="number" id="generateTaskPriorityHigh" min="0" max="100" value="33" style="width: 100%;" />
+                </div>
+            </div>
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Priority percentages should sum to 100%.</div>
+
+            <label>Deadline settings</label>
+            <div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
+                <div style="flex: 1;">
+                    <label style="font-size: 12px;">Minimum offset (minutes)</label>
+                    <input type="number" id="generateTaskDeadlineMin" min="0" max="1440" step="0.1" value="3" style="width: 100%;" />
+                </div>
+                <div style="flex: 1;">
+                    <label style="font-size: 12px;">Maximum offset (minutes)</label>
+                    <input type="number" id="generateTaskDeadlineMax" min="0" max="1440" step="0.1" value="5" style="width: 100%;" />
+                </div>
+            </div>
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Deadlines are sampled after start; 0 disables deadlines.</div>
+
+            <label style="margin-top:10px;">Random destination count</label>
+            <div style="display: flex; gap: 10px; align-items: center; margin-top: 5px;">
+                <div style="flex: 1;">
+                    <label style="font-size: 12px;">Minimum destinations</label>
+                    <input type="number" id="generateTaskEndMin" min="0" max="5" step="1" value="1" style="width: 100%;" />
+                </div>
+                <div style="flex: 1;">
+                    <label style="font-size: 12px;">Maximum destinations</label>
+                    <input type="number" id="generateTaskEndMax" min="0" max="5" step="1" value="1" style="width: 100%;" />
+                </div>
+            </div>
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Destinations per task are sampled from 0 to 5.</div>
+
+            <div class="modal-buttons">
+                <button type="button" class="btn-save" id="confirmGenerateTaskBtn">Generate</button>
+                <button type="button" class="btn-cancel" onclick="closeGenerateTaskModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action timing dialog -->
+    <div id="actionConfigModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <h3>Action timing</h3>
+            <div class="config-header" style="display: flex; font-weight: bold; padding: 5px; border-bottom: 1px solid #eee; margin-bottom: 10px;">
+                <div style="flex: 1;">Action</div>
+                <div style="flex: 1;">Duration type</div>
+                <div style="flex: 2;">Parameters (seconds)</div>
+            </div>
+            <div id="actionConfigList" style="max-height: 400px; overflow-y: auto; padding: 5px;">
+                <!-- Dynamically generated settings -->
+            </div>
+            <div class="modal-buttons">
+                <button type="button" class="btn-save" id="confirmActionConfigBtn">Save settings</button>
+                <button type="button" class="btn-cancel" onclick="document.getElementById('actionConfigModal').style.display='none'">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Battery settings dialog -->
+    <div id="batteryConfigModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <h3>Battery settings</h3>
+            <label>Charge rate (%/s)</label>
+            <input type="number" id="chargeRateInput" min="0" step="0.1" value="1.0" />
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Battery percentage gained per second while charging.</div>
+
+            <label style="margin-top: 15px;">Idle consumption (%/s)</label>
+            <input type="number" id="idleConsumptionInput" min="0" step="0.01" value="0.1" />
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Battery percentage consumed per second while idle.</div>
+
+            <label style="margin-top: 15px;">Working consumption (%/s)</label>
+            <input type="number" id="workingConsumptionInput" min="0" step="0.01" value="0.5" />
+            <div style="font-size: 11px; color: #666; margin-top: 2px;">Battery percentage consumed per second while working.</div>
+
+            <div class="modal-buttons">
+                <button type="button" class="btn-save" id="confirmBatteryConfigBtn">Save settings</button>
+                <button type="button" class="btn-cancel" onclick="document.getElementById('batteryConfigModal').style.display='none'">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics dialog -->
+    <div id="statsModal" class="modal">
+        <div class="modal-content">
+            <h3>Simulation statistics</h3>
+            <div id="statsContent" style="padding: 10px;">
+                Loading...
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="document.getElementById('statsModal').style.display='none'">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load external JavaScript -->
+    <script src="/static/js/app-full.js"></script>
+    <script>
+        // Initialize after page load
+    </script>
+</body>
+</html>

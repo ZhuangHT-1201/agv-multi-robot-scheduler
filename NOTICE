@@ -1,0 +1,16 @@
+AGV Multi-Robot Scheduler
+
+The simulator includes code derived from the yunjirobot/planning_simulator
+project:
+https://github.com/yunjirobot/planning_simulator
+
+The original simulator is distributed under the GNU General Public License,
+version 3. Substantial task-allocation, scheduling, rolling-path, testing, and
+integration changes are included in this distribution.
+
+The ecbs_standalone component is distributed under the MIT License. See
+ecbs_standalone/LICENSE.
+
+Sample scenario data is included for demonstration and reproducibility.
+Redistributors are responsible for confirming that any third-party data has
+terms compatible with their intended use.

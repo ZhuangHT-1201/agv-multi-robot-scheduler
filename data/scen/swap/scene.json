@@ -1,0 +1,361 @@
+{
+  "name": "swap",
+  "paths": [
+    {
+      "created_at": "2025-11-27T15:43:43.942085",
+      "edges": [
+        {
+          "action": null,
+          "cost": 7.85,
+          "direction": "bidirectional",
+          "from": "V1764229409293257",
+          "id": "E176422941571179",
+          "length": 7.85,
+          "max_speed": 1.5,
+          "to": "V1764229415711340",
+          "width": 0.6
+        },
+        {
+          "action": null,
+          "cost": 8.901,
+          "direction": "bidirectional",
+          "from": "V1764229415711340",
+          "id": "E1764229417294273",
+          "length": 8.901,
+          "max_speed": 1.5,
+          "to": "V1764229417293188",
+          "width": 0.6
+        }
+      ],
+      "floor": 0,
+      "id": "pa1",
+      "name": "pa1",
+      "updated_at": "2025-11-27T15:43:43.942089",
+      "vertices": [
+        {
+          "action": null,
+          "id": "V1764229409293257",
+          "properties": {},
+          "type": "waypoint",
+          "x": 46.675000000000004,
+          "y": 43.4655029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764229415711340",
+          "properties": {},
+          "type": "waypoint",
+          "x": 54.525000000000006,
+          "y": 43.5155029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764229417293188",
+          "properties": {},
+          "type": "waypoint",
+          "x": 63.425000000000004,
+          "y": 43.6155029296875,
+          "z": 0
+        }
+      ]
+    },
+    {
+      "created_at": "2025-11-27T15:44:00.916375",
+      "edges": [
+        {
+          "action": null,
+          "cost": 7.159,
+          "direction": "bidirectional",
+          "from": "V1764229415711340",
+          "id": "E1764229434543231",
+          "length": 7.159,
+          "max_speed": 1.5,
+          "to": "V1764229434543249",
+          "width": 0.6
+        },
+        {
+          "action": null,
+          "cost": 8.004,
+          "direction": "bidirectional",
+          "from": "V1764229434543249",
+          "id": "E1764229436595398",
+          "length": 8.004,
+          "max_speed": 1.5,
+          "to": "V1764229436595965",
+          "width": 0.6
+        }
+      ],
+      "floor": 0,
+      "id": "pa2",
+      "name": "pa2",
+      "updated_at": "2026-01-08T14:44:38.456898",
+      "vertices": [
+        {
+          "action": null,
+          "id": "V1764229415711340",
+          "properties": {},
+          "type": "waypoint",
+          "x": 54.525000000000006,
+          "y": 43.5155029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764229434543249",
+          "properties": {},
+          "type": "waypoint",
+          "x": 54.875,
+          "y": 36.3655029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764229436595965",
+          "properties": {
+            "block": false
+          },
+          "type": "waypoint",
+          "x": 46.875,
+          "y": 36.116,
+          "z": 0
+        }
+      ]
+    },
+    {
+      "created_at": "2025-11-27T15:44:15.392420",
+      "edges": [
+        {
+          "action": null,
+          "cost": 9.252,
+          "direction": "bidirectional",
+          "from": "V1764229434543249",
+          "id": "E1764229449027610",
+          "length": 9.252,
+          "max_speed": 1.5,
+          "to": "V1764229449027159",
+          "width": 0.6
+        }
+      ],
+      "floor": 0,
+      "id": "pa3",
+      "name": "pa3",
+      "updated_at": "2025-11-27T15:44:15.392424",
+      "vertices": [
+        {
+          "action": null,
+          "id": "V1764229434543249",
+          "properties": {},
+          "type": "waypoint",
+          "x": 54.875,
+          "y": 36.3655029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764229449027159",
+          "properties": {},
+          "type": "waypoint",
+          "x": 64.125,
+          "y": 36.5655029296875,
+          "z": 0
+        }
+      ]
+    }
+  ],
+  "agvs": [
+    {
+      "battery": 100,
+      "current_path": null,
+      "current_task": null,
+      "dimensions": {
+        "length": 0.7,
+        "width": 0.5
+      },
+      "id": "174fd901-f6cd-4d6d-8905-cc406abca97a",
+      "length": 0.7,
+      "max_speed": 1,
+      "name": "agv001",
+      "orientation": 0,
+      "position": {
+        "x": 64.275,
+        "y": 36.6155029296875,
+        "z": 0
+      },
+      "simState": {
+        "dist": 0,
+        "edgeIdx": 0,
+        "finished": false
+      },
+      "sim_state": {
+        "dist": 0,
+        "edge_idx": 0
+      },
+      "status": "idle",
+      "updated_at": "2025-11-27T15:45:40.798855",
+      "wait_until": null,
+      "width": 0.5
+    },
+    {
+      "battery": 100,
+      "current_path": null,
+      "current_task": null,
+      "dimensions": {
+        "length": 0.7,
+        "width": 0.5
+      },
+      "id": "46d6c2ea-d3c5-4e95-a8d4-7a393ef331ff",
+      "length": 0.7,
+      "max_speed": 1,
+      "name": "agv002",
+      "orientation": 0,
+      "position": {
+        "x": 46.975,
+        "y": 36.0655029296875,
+        "z": 0
+      },
+      "simState": {
+        "dist": 0,
+        "edgeIdx": 0,
+        "finished": false
+      },
+      "sim_state": {
+        "dist": 0,
+        "edge_idx": 0
+      },
+      "status": "idle",
+      "updated_at": "2025-11-27T15:45:35.668756",
+      "wait_until": null,
+      "width": 0.5
+    },
+    {
+      "battery": 100,
+      "current_path": null,
+      "current_task": null,
+      "dimensions": {
+        "length": 0.7,
+        "width": 0.5
+      },
+      "id": "bdf05ac5-06c3-4a6c-b49e-307e6feeddbc",
+      "length": 0.7,
+      "max_speed": 1,
+      "name": "agv003",
+      "orientation": 0,
+      "position": {
+        "x": 46.775000000000006,
+        "y": 43.4655029296875,
+        "z": 0
+      },
+      "simState": {
+        "dist": 0,
+        "edgeIdx": 0,
+        "finished": false
+      },
+      "sim_state": {
+        "dist": 0,
+        "edge_idx": 0
+      },
+      "status": "idle",
+      "updated_at": "2025-11-27T15:45:28.517812",
+      "wait_until": null,
+      "width": 0.5
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T1764229619749868",
+      "name": "task1",
+      "start_vertex": "V1764229409293257",
+      "end_vertex": "V1764229449027159",
+      "end_vertices": [
+        "V1764229449027159"
+      ],
+      "priority": "medium",
+      "start_time": "00:10",
+      "deadline": "02:00",
+      "status": "pending",
+      "created_at": "2025-11-27T07:46:59.749Z",
+      "agv_id": null,
+      "completed_at": null,
+      "completed_at_sim": null
+    },
+    {
+      "id": "T1764229660043390",
+      "name": "task2",
+      "start_vertex": "V1764229436595965",
+      "end_vertex": "V1764229417293188",
+      "end_vertices": [
+        "V1764229417293188"
+      ],
+      "priority": "medium",
+      "start_time": "00:10",
+      "deadline": "01:00",
+      "status": "pending",
+      "created_at": "2025-11-27T07:47:40.043Z",
+      "agv_id": null,
+      "completed_at": null,
+      "completed_at_sim": null
+    },
+    {
+      "id": "T176423042189347",
+      "name": "task3",
+      "start_vertex": "V1764229449027159",
+      "end_vertex": "V1764229436595965",
+      "end_vertices": [
+        "V1764229436595965"
+      ],
+      "priority": "medium",
+      "start_time": "00:10",
+      "deadline": "01:00",
+      "status": "pending",
+      "created_at": "2025-11-27T08:00:21.893Z",
+      "agv_id": null,
+      "completed_at": null,
+      "completed_at_sim": null
+    }
+  ],
+  "created_at": "2025-11-27T15:43:18.708480",
+  "updated_at": "2026-01-08T14:44:41.146284",
+  "actionConfigs": {
+    "charge": {
+      "type": "fixed",
+      "value": 60
+    },
+    "dock": {
+      "type": "fixed",
+      "value": 5
+    },
+    "drop": {
+      "type": "fixed",
+      "value": 5
+    },
+    "enter_elevator": {
+      "type": "fixed",
+      "value": 5
+    },
+    "exit_elevator": {
+      "type": "fixed",
+      "value": 5
+    },
+    "pick": {
+      "type": "fixed",
+      "value": 5
+    },
+    "request_entry": {
+      "max": 10,
+      "min": 2,
+      "type": "random"
+    },
+    "wait_elevator": {
+      "max": 20,
+      "min": 5,
+      "type": "random"
+    }
+  },
+  "batteryConfig": {
+    "chargeRate": 1,
+    "idleConsumption": 0.1,
+    "workingConsumption": 0.5
+  }
+}

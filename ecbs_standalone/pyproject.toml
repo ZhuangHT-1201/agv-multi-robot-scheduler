@@ -1,0 +1,37 @@
+[build-system]
+requires = [
+    "setuptools>=45",
+    "wheel",
+    "cmake>=3.12",
+    "pybind11>=2.6.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecbs-standalone"
+version = "1.0.0"
+description = "High-performance ECBS implementation in C++ with Python bindings"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = ["ecbs", "mapf", "multi-agent", "path-finding", "conflict-based-search"]
+dependencies = [
+    "pybind11>=2.6.0",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: C++",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+]

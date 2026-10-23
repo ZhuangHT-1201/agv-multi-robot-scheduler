@@ -1,0 +1,405 @@
+{
+  "name": "string",
+  "paths": [
+    {
+      "created_at": "2025-11-27T20:24:57.745944",
+      "edges": [
+        {
+          "action": null,
+          "cost": 3.75,
+          "direction": "bidirectional",
+          "from": "V1764246264983557",
+          "id": "E1764246278910701",
+          "length": 3.75,
+          "max_speed": 1.5,
+          "to": "V1764246278910556",
+          "width": 0.6
+        },
+        {
+          "action": null,
+          "cost": 4.05,
+          "direction": "bidirectional",
+          "from": "V1764246278910556",
+          "id": "E1764246285479670",
+          "length": 4.05,
+          "max_speed": 1.5,
+          "to": "V1764246285479713",
+          "width": 0.6
+        }
+      ],
+      "floor": 0,
+      "id": "pa1",
+      "name": "pa1",
+      "updated_at": "2025-11-27T20:24:57.745948",
+      "vertices": [
+        {
+          "action": null,
+          "id": "V1764246264983557",
+          "properties": {},
+          "type": "waypoint",
+          "x": 48.775000000000006,
+          "y": 33.2155029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764246278910556",
+          "properties": {},
+          "type": "waypoint",
+          "x": 52.525000000000006,
+          "y": 33.2155029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764246285479713",
+          "properties": {},
+          "type": "waypoint",
+          "x": 56.575,
+          "y": 33.2155029296875,
+          "z": 0
+        }
+      ]
+    },
+    {
+      "created_at": "2025-11-27T20:25:47.545458",
+      "edges": [
+        {
+          "action": null,
+          "cost": 2.301,
+          "direction": "bidirectional",
+          "from": "V1764246278910556",
+          "id": "E1764246320061186",
+          "length": 2.301,
+          "max_speed": 1.5,
+          "to": "V1764246320061368",
+          "width": 0.6
+        },
+        {
+          "action": null,
+          "cost": 2.201,
+          "direction": "bidirectional",
+          "from": "V1764246320061368",
+          "id": "E1764246326878257",
+          "length": 2.201,
+          "max_speed": 1.5,
+          "to": "V1764246326878272",
+          "width": 0.6
+        },
+        {
+          "action": null,
+          "cost": 2.351,
+          "direction": "bidirectional",
+          "from": "V1764246326878272",
+          "id": "E1764246332292996",
+          "length": 2.351,
+          "max_speed": 1.5,
+          "to": "V1764246332292669",
+          "width": 0.6
+        },
+        {
+          "action": null,
+          "cost": 2.2,
+          "direction": "bidirectional",
+          "from": "V1764246332292669",
+          "id": "E1764246333885647",
+          "length": 2.2,
+          "max_speed": 1.5,
+          "to": "V176424633388533",
+          "width": 0.6
+        },
+        {
+          "action": null,
+          "cost": 2.55,
+          "direction": "bidirectional",
+          "from": "V176424633388533",
+          "id": "E1764246336684506",
+          "length": 2.55,
+          "max_speed": 1.5,
+          "to": "V1764246336684644",
+          "width": 0.6
+        }
+      ],
+      "floor": 0,
+      "id": "pa1",
+      "name": "pa1",
+      "updated_at": "2025-11-27T20:25:47.545462",
+      "vertices": [
+        {
+          "action": null,
+          "id": "V1764246278910556",
+          "properties": {},
+          "type": "waypoint",
+          "x": 52.525000000000006,
+          "y": 33.2155029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764246320061368",
+          "properties": {},
+          "type": "waypoint",
+          "x": 52.575,
+          "y": 35.5155029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764246326878272",
+          "properties": {},
+          "type": "waypoint",
+          "x": 52.625,
+          "y": 37.7155029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764246332292669",
+          "properties": {},
+          "type": "waypoint",
+          "x": 52.675000000000004,
+          "y": 40.065502929687504,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V176424633388533",
+          "properties": {},
+          "type": "waypoint",
+          "x": 52.675000000000004,
+          "y": 42.2655029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V1764246336684644",
+          "properties": {},
+          "type": "waypoint",
+          "x": 52.725,
+          "y": 44.815502929687504,
+          "z": 0
+        }
+      ]
+    },
+    {
+      "created_at": "2025-11-27T20:26:03.031850",
+      "edges": [
+        {
+          "action": null,
+          "cost": 2.2,
+          "direction": "bidirectional",
+          "from": "V176424633388533",
+          "id": "E1764246357284635",
+          "length": 2.2,
+          "max_speed": 1.5,
+          "to": "V176424635728499",
+          "width": 0.6
+        }
+      ],
+      "floor": 0,
+      "id": "pa3",
+      "name": "pa3",
+      "updated_at": "2025-11-27T20:26:03.031858",
+      "vertices": [
+        {
+          "action": null,
+          "id": "V176424633388533",
+          "properties": {},
+          "type": "waypoint",
+          "x": 52.675000000000004,
+          "y": 42.2655029296875,
+          "z": 0
+        },
+        {
+          "action": null,
+          "id": "V176424635728499",
+          "properties": {},
+          "type": "waypoint",
+          "x": 54.875,
+          "y": 42.2655029296875,
+          "z": 0
+        }
+      ]
+    }
+  ],
+  "agvs": [
+    {
+      "battery": 100,
+      "current_path": null,
+      "current_task": null,
+      "dimensions": {
+        "length": 0.7,
+        "width": 0.5
+      },
+      "id": "7370f9ed-3022-4d46-91e5-046e2b6b6c6b",
+      "length": 0.7,
+      "max_speed": 1,
+      "name": "agv001",
+      "orientation": 0,
+      "position": {
+        "x": 48.775,
+        "y": 33.266,
+        "z": 0
+      },
+      "sim_state": {
+        "dist": 0,
+        "edge_idx": 0
+      },
+      "status": "idle",
+      "updated_at": "2025-11-27T20:26:25.714135",
+      "wait_until": null,
+      "width": 0.5,
+      "simState": {
+        "edgeIdx": 0,
+        "dist": 0,
+        "finished": false
+      }
+    },
+    {
+      "battery": 100,
+      "current_path": null,
+      "current_task": null,
+      "dimensions": {
+        "length": 0.7,
+        "width": 0.5
+      },
+      "id": "cd46c98e-4f30-4a03-bfee-32ef7585365e",
+      "length": 0.7,
+      "max_speed": 1,
+      "name": "agv002",
+      "orientation": 0,
+      "position": {
+        "x": 52.775,
+        "y": 44.916,
+        "z": 0
+      },
+      "sim_state": {
+        "dist": 0,
+        "edge_idx": 0
+      },
+      "status": "idle",
+      "updated_at": "2025-11-27T20:26:39.119162",
+      "wait_until": null,
+      "width": 0.5,
+      "simState": {
+        "edgeIdx": 0,
+        "dist": 0,
+        "finished": false
+      }
+    },
+    {
+      "battery": 100,
+      "current_path": null,
+      "current_task": null,
+      "dimensions": {
+        "length": 0.7,
+        "width": 0.5
+      },
+      "id": "3954b32b-368c-4900-8454-951b127bc336",
+      "length": 0.7,
+      "max_speed": 1,
+      "name": "agv003",
+      "orientation": 0,
+      "position": {
+        "x": 54.975,
+        "y": 42.266,
+        "z": 0
+      },
+      "sim_state": {
+        "dist": 0,
+        "edge_idx": 0
+      },
+      "status": "idle",
+      "updated_at": "2025-11-27T20:26:49.976257",
+      "wait_until": null,
+      "width": 0.5,
+      "simState": {
+        "edgeIdx": 0,
+        "dist": 0,
+        "finished": false
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T1764246440001628",
+      "name": "task1",
+      "start_vertex": "V1764246264983557",
+      "end_vertex": "V1764246336684644",
+      "priority": "medium",
+      "start_time": "00:10",
+      "deadline": "01:00",
+      "status": "pending",
+      "created_at": "2025-11-27T12:27:20.001Z",
+      "agv_id": null,
+      "completed_at": null,
+      "completed_at_sim": null
+    },
+    {
+      "id": "T1764246478601298",
+      "name": "task2",
+      "start_vertex": "V1764246336684644",
+      "end_vertex": "V1764246264983557",
+      "priority": "medium",
+      "start_time": "00:10",
+      "deadline": "01:00",
+      "status": "pending",
+      "created_at": "2025-11-27T12:27:58.601Z",
+      "agv_id": null,
+      "completed_at": null,
+      "completed_at_sim": null
+    },
+    {
+      "id": "T1764246497513460",
+      "name": "task3",
+      "start_vertex": "V176424635728499",
+      "end_vertex": "V1764246285479713",
+      "priority": "medium",
+      "start_time": "00:10",
+      "deadline": "01:00",
+      "status": "pending",
+      "created_at": "2025-11-27T12:28:17.513Z",
+      "agv_id": null,
+      "completed_at": null,
+      "completed_at_sim": null
+    }
+  ],
+  "created_at": "2025-11-27T20:24:12.548116",
+  "updated_at": "2025-11-27T20:28:37.858734",
+  "actionConfigs": {
+    "charge": {
+      "type": "fixed",
+      "value": 60
+    },
+    "dock": {
+      "type": "fixed",
+      "value": 5
+    },
+    "drop": {
+      "type": "fixed",
+      "value": 5
+    },
+    "enter_elevator": {
+      "type": "fixed",
+      "value": 5
+    },
+    "exit_elevator": {
+      "type": "fixed",
+      "value": 5
+    },
+    "pick": {
+      "type": "fixed",
+      "value": 5
+    },
+    "request_entry": {
+      "max": 10,
+      "min": 2,
+      "type": "random"
+    },
+    "wait_elevator": {
+      "max": 20,
+      "min": 5,
+      "type": "random"
+    }
+  }
+}

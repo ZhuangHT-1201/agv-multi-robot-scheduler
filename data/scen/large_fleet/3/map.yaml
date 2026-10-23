@@ -1,0 +1,10 @@
+create_time: 1762496816
+creator: WTTH09B059YF35421
+free_thresh: 0.196
+image: map.png
+map_type: v2
+modify_time: 1764582887
+negate: 0
+occupied_thresh: 0.65
+origin: [-6.946237, -13.952369, 0.0]
+resolution: 0.03
